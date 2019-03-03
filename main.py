@@ -2,7 +2,7 @@ from workLog import workLog
 from createUtil import collectTaskDate, collectTaskNotes, collectTaskTitle, \
     collectMinutes
 from workLogDAO import workLogDAO
-from searchUtil import searchByDate, searchByRegex, searchByString
+from searchUtil import searchByTimeSpent, searchByDate, searchByRegex, searchByString
 
 
 def main():
@@ -60,7 +60,8 @@ def searchWorkLog(logDAO):
                 a) Exact Date
                 b) Exact Search
                 c) Regex Pattern
-                d) Return to menu
+                d) Time Spent
+                E) Return to menu
                 """)
 
         if searchOption.lower() == 'a':
@@ -70,6 +71,8 @@ def searchWorkLog(logDAO):
         elif searchOption.lower() == 'c':
             searchByRegex(logList)
         elif searchOption.lower() == 'd':
+            searchByTimeSpent(logList)
+        elif searchOption.lower() == 'e':
             break
         else:
             print('Invalid option selected.\n')

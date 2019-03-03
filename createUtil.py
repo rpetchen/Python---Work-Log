@@ -39,9 +39,9 @@ def collectMinutes():
 
     while not minutesValid:
         minutes = input("Enter Task Minutes: ")
+        if minutes:
+            try:
+                return int(minutes)
 
-        try:
-            return int(minutes)
-
-        except BaseException:
-            print("Enter only whole numbers")
+            except BaseException:
+                print("Enter only whole numbers")

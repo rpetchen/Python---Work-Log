@@ -50,6 +50,9 @@ def searchByRegex(logList):
             searchActive = False
             displayResults(foundLogList)
 
+        elif not foundLogList:
+            searchActive = False
+            inp = input("No results. Press enter to return to search menu")
 
 def searchByString(logList):
 
@@ -71,6 +74,38 @@ def searchByString(logList):
             searchActive = False
             displayResults(foundLogList)
 
+        elif not foundLogList:
+            searchActive = False
+            inp = input("No results. Press enter to return to search menu")
+
+def searchByTimeSpent(logList):
+
+    foundLogList = []
+    searchActive = True
+
+    while searchActive:
+
+        timeInput = input("""Enter minutes spent: """)
+
+        try:
+            timeInput = int(timeInput)
+        except:
+            print("Time spent should be in whole numbers")
+
+
+        if type(timeInput) == int:
+            for log in logList:
+
+                if log.getTimeSpent() == timeInput:
+                    foundLogList.append(log)
+
+            if foundLogList:
+                searchActive = False
+                displayResults(foundLogList)
+
+            elif not foundLogList:
+                searchActive = False
+                inp = input("No results. Press enter to return to search menu")
 
 def displayResults(logList):
 
@@ -87,9 +122,14 @@ def displayResults(logList):
 
         print("\nResults {} of {}".format((logIter + 1), (len(logList))))
 
-        displayOption = input("[N]ext, [R]eturn to search menu")
+        displayOption = input("[P]revious, [N]ext, [R]eturn to search menu")
 
-        if displayOption.lower() == "n":
+        if displayOption.lower() == "p":
+            if logIter > 0:
+                logIter -= 1
+            else:
+                print("No Previous Results!")
+        elif displayOption.lower() == "n":
             if len(logList) > logIter + 1:
                 logIter += 1
             else:

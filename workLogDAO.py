@@ -49,7 +49,7 @@ class workLogDAO():
                 taskDate = datetime.datetime.strptime(
                     row['task_date'], '%Y-%m-%d').date()
 
-                log = workLog(taskTitle, timeSpent, taskDate, taskNotes)
+                log = workLog(taskTitle, int(timeSpent), taskDate, taskNotes)
 
                 workLogList.append(log)
 
